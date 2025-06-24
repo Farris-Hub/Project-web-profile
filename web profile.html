@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FARRIS ANDIKA SUGIANTO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white: #fff;
+      --black: #111;
+      --gray-light: #f4f4f4;
+      --gray-mid: #999;
+      --gray-dark: #444;
+      --primary: #222;
+      --accent: #a622b8;
+      --transition: 0.3s ease;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      margin: 0;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      background: var(--black);
+      color: var(--gray-light);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-light);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark header {
+      background: var(--black);
+      border-color: var(--gray-dark);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: default;
+      user-select: none;
+    }
+    body.dark .logo {
+      color: var(--gray-light);
+    }
+    nav a {
+      color: var(--primary);
+      margin-left: 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
+      transition: color var(--transition);
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    body.dark nav a {
+      color: var(--gray-light);
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .toggle-btn {
+      margin-left: 2rem;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--primary);
+      transition: color var(--transition);
+    }
+    body.dark .toggle-btn {
+      color: var(--gray-light);
+    }
+
+    .hero {
+      max-width: 900px;
+      margin: 4rem auto 2rem;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    .hero img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 5px solid var(--accent);
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 5px 15px rgba(175, 175, 175, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .hero img:hover {
+      transform: scale(1.05);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    body.dark .hero h1 {
+      color: var(--gray-light);
+    }
+    .hero h1 span {
+      color: var(--accent);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--gray-dark);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    body.dark .hero p {
+      color: var(--gray-light);
+      opacity: 0.8;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+    }
+    h2.section-title {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    body.dark h2.section-title {
+      color: var(--gray-light);
+    }
+    .about-content {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .about-text {
+      flex: 1 1 400px;
+      color: var(--gray-dark);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    body.dark .about-text {
+      color: var(--gray-light);
+      opacity: 0.85;
+    }
+    .about-list {
+      flex: 1 1 300px;
+    }
+    .about-list h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .about-list ul {
+      list-style: disc inside;
+      color: var(--gray-dark);
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+    body.dark .about-list ul {
+      color: var(--gray-light);
+      opacity: 0.9;
+    }
+
+    .skills {
+      margin-top: 2rem;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .skill-badge {
+      background: var(--accent);
+      color: white;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      user-select: none;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.5);
+      transition: background 0.3s;
+    }
+    .skill-badge:hover {
+      background: #3730a3;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .project-card {
+      background: var(--gray-light);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+      color: var(--primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    body.dark .project-card {
+      background: #1f1f1f;
+      color: var(--gray-light);
+      box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4);
+    }
+    .project-card h3 {
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .project-card p {
+      flex-grow: 1;
+      color: var(--gray-dark);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    body.dark .project-card p {
+      color: var(--gray-light);
+      opacity: 0.85;
+    }
+    .project-tags {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .project-tag {
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      user-select: none;
+      box-shadow: 0 1px 5px rgba(79, 70, 229, 0.5);
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    input, textarea {
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--gray-light);
+      border-radius: 0.6rem;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.3s;
+      background: var(--white);
+      color: var(--black);
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 5px var(--accent);
+    }
+    body.dark input, body.dark textarea {
+      background: #222;
+      color: var(--gray-light);
+      border-color: #444;
+    }
+    body.dark input:focus, body.dark textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 5px var(--accent);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    button[type="submit"] {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.9rem;
+      font-weight: 700;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button[type="submit"]:hover {
+      background: #3730a3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--gray-light);
+      color: var(--gray-dark);
+      margin-top: 4rem;
+      user-select: none;
+    }
+    body.dark footer {
+      background: #111;
+      color: var(--gray-light);
+    }
+    @media (max-width: 600px) {
+      header {
+        flex-wrap: wrap;
+      }
+      nav {
+        margin-top: 0.8rem;
+      }
+      nav a {
+        margin-left: 1rem;
+        margin-right: 1rem;
+      }
+      .about-content {
+        flex-direction: column;
+      }
+      .about-list, .about-text {
+        flex: unset;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Farris.dev</div>
+    <nav>
+      <a href="#home">Beranda</a>
+      <a href="#about">Tentang</a>
+      <a href="#projects">Proyek</a>
+      <a href="#contact">Kontak</a>
+      <button class="toggle-btn" id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <img src="IMG_20250328_164331.jpg" alt="Foto Profil" />
+      <h1>Halo, saya <span>FARRIS ANDIKA SUGIANTO</span></h1>
+      <p>Siswa kelas 10 PPLG SMKN 1 Cianjur | Pengembang Perangkat Lunak dan Gim</p>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">Tentang Saya</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Saya seorang siswa kelas 10 jurusan <strong>PPLG (Pengembangan Perangkat Lunak dan Gim)</strong> di <strong>SMKN 1 Cianjur</strong>. Saya sangat tertarik dengan dunia teknologi, terutama dalam pengembangan perangkat lunak dan gim. Saya percaya bahwa teknologi adalah alat yang kuat untuk memecahkan masalah dan membuka peluang baru.
+          </p>
+          <p>
+            Saat ini saya aktif belajar pemrograman, desain UI/UX, dan pengembangan aplikasi yang efisien serta mudah digunakan. Saya ingin terus mengembangkan diri untuk menjadi profesional yang handal dan berkontribusi bagi dunia digital.
+          </p>
+        </div>
+        <div class="about-list">
+          <h3>Visi</h3>
+          <p>Menjadi pelajar PPLG yang unggul, kreatif, dan berintegritas tinggi dalam pengembangan perangkat lunak dan gim, serta mampu bersaing di era digital global.</p>
+
+          <h3>Misi</h3>
+          <ul>
+            <li>Mempelajari dan menguasai dasar-dasar pemrograman, desain UI/UX, serta logika algoritma.</li>
+            <li>Mengembangkan proyek sederhana sebagai latihan menuju profesionalisme.</li>
+            <li>Menjaga semangat belajar, disiplin, dan etika dalam setiap proses pembelajaran.</li>
+          </ul>
+
+          <h3>Keahlian</h3>
+          <div class="skills">
+            <span class="skill-badge">HTML</span>
+            <span class="skill-badge">CSS</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">Git & GitHub</span>
+            <span class="skill-badge">Figma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Proyek Saya</h2>
+      <div class="projects-grid">
+        <div class="project-card" tabindex="0">
+          <h3>Aplikasi ToDo List</h3>
+          <p>Aplikasi sederhana untuk mengelola tugas harian dengan fitur tambah, hapus, dan tandai selesai.</p>
+          <div class="project-tags">
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">HTML</span>
+            <span class="project-tag">CSS</span>
+          </div>
+        </div>
+        <div class="project-card" tabindex="0">
+          <h3>Website Portfolio</h3>
+          <p>Website pribadi yang menampilkan karya dan informasi diri secara profesional dan modern.</p>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">CSS Modules</span>
+          </div>
+        </div>
+        <div class="project-card" tabindex="0">
+          <h3>Aplikasi Kalkulator</h3>
+          <p>Kalkulator web dengan fungsi dasar dan desain minimalis serta responsif.</p>
+          <div class="project-tags">
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">HTML</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Kontak Saya</h2>
+      <form id="contactForm" novalidate>
+        <input type="text" id="name" name="name" placeholder="Nama lengkap" required />
+        <input type="email" id="email" name="email" placeholder="Email" required />
+        <textarea id="message" name="message" placeholder="Pesan Anda" required></textarea>
+        <button type="submit">Kirim Pesan</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Farris Andika - SMKN 1 Cianjur
+  </footer>
+
+  <script>
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      if(body.classList.contains('dark')) {
+        toggleBtn.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        toggleBtn.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    if(localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = '☀️';
+    }
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = contactForm.name.value.trim();
+      const email = contactForm.email.value.trim();
+      const message = contactForm.message.value.trim();
+
+      if(!name || !email || !message) {
+        alert('Mohon lengkapi semua bidang!');
+        return;
+      }
+      if(!validateEmail(email)) {
+        alert('Email tidak valid!');
+        return;
+      }
+      alert(`Terima kasih, ${name}! Pesan Anda sudah terkirim.`);
+      contactForm.reset();
+    });
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+  </script>
+</body>
+</html>
